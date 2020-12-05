@@ -3,11 +3,12 @@ package applikasi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Pangkalandata {
 
 	private static Pangkalandata pd = new Pangkalandata();
-	private static final String alamatPangkalan = "jdbc:sqlite:kucing.db";
+//	private static final String alamatPangkalan = "jdbc:sqlite:kucing.db";
 	private Connection sambunganSql;
 
 	public static Pangkalandata insta() {
@@ -21,8 +22,11 @@ public class Pangkalandata {
 		return sambunganSql;
 	}
 
-	public void buatSambungan() throws SQLException {
-		sambunganSql = DriverManager.getConnection(alamatPangkalan);
+	public void buatSambungan(Properties props) throws SQLException {
+		String server = props.getProperty("pelayan");
+		String database = props.getProperty("namapangkalan");
+//		sambunganSql = DriverManager.getConnection(alamatPangkalan);
+		sambunganSql = DriverManager.getConnection(server+database);
 	}
 
 	public void tutupSambungan() throws SQLException {
