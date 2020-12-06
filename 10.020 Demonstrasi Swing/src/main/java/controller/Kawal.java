@@ -10,8 +10,8 @@ public class Kawal {
 	public Kawal() {
 		mainPanel = new PanelUtama();
 		mainFrame = new BingkaiUtama();
-		
+
 		mainFrame.setContentPane(mainPanel);
-		
+
 	}
 }
