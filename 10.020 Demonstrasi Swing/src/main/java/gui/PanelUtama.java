@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 public class PanelUtama extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private PemerhatiBorang pemerhatiBorang;
 
 	public PanelUtama() {
 		var labelAddPengguna = new JLabel("Tambah Pengguna");
@@ -34,10 +35,14 @@ public class PanelUtama extends JPanel {
 		add(buatSatuPanel(), gc);
 	}
 
+	public void setPemerhatiBorang(PemerhatiBorang pemerhatiBorang) {
+		this.pemerhatiBorang = pemerhatiBorang;
+	}
+
 	private JPanel buatSatuPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
-		
+
 		var etchBorder = BorderFactory.createEtchedBorder();
 		var pad = 20;
 		var emptyBorder = BorderFactory.createEmptyBorder(pad, pad, pad, pad);
@@ -50,7 +55,13 @@ public class PanelUtama extends JPanel {
 		var tfPassword = new JTextField(25);
 
 		var btnSimpan = new JButton("Simpan");
-
+		btnSimpan.addActionListener(e -> {
+			String name = tfNama.getText();
+			String pwd = tfPassword.getText();
+			if (pemerhatiBorang != null) {
+				pemerhatiBorang.terimaMaklumatNamaDanPassword(name, pwd);
+			}
+		});
 		var gc = new GridBagConstraints();
 
 		gc.gridx = 0;
